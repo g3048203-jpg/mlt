@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оставить отзыв</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #71717a;
+            --accent-black: #000000;
+            --yandex-color: #ff3333;
+            --gis-color: #00b386;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+            padding: 35px 24px;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 20px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Твой фирменный логотип MLT вверху */
+        .brand-mlt {
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #4b5563 0%, #111827 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            color: var(--accent-black);
+            letter-spacing: -0.3px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin: 0 0 16px 0;
+            font-weight: 500;
+        }
+
+        /* Контурное сердечко */
+        .heart-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 18px auto;
+            display: block;
+            fill: none;
+            stroke: var(--accent-black);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Звезды */
+        .stars-container {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 25px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: var(--accent-black);
+        }
+
+        /* Кнопки сервисов */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border: 1px solid #edf2f7;
+            background: #ffffff;
+            color: #1a202c;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .yandex-icon { background-color: var(--yandex-color); }
+        .gis-icon { background-color: var(--gis-color); }
+
+        .arrow {
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: var(--text-sub);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .footer span {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-black);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loader {
+            padding: 40px;
+            font-size: 15px;
+            color: var(--text-sub);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="content-card">
+        <div id="loader" class="loader">Загрузка...</div>
+
+        <div id="valid-place" class="hidden">
+            <!-- Твой логотип MLT -->
+            <div class="brand-mlt">MLT</div>
+
+            <h1 id="place-name">Заведение</h1>
+            <p class="subtitle">Спасибо, что вы с нами</p>
+
+            <svg class="heart-icon" viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+
+            <div class="subtitle" style="font-size: 13px; margin-bottom: 8px;">Выберите, где оставить отзыв</div>
+            
+            <div class="stars-container">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+            </div>
+
+            <a id="link-yandex" href="#" class="btn" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-icon yandex-icon">Я</div>
+                    <span>Яндекс Карты</span>
+                </div>
+                <span class="arrow">›</span>
+            </a>
+
+            <a id="link-gis" href="#" class="btn" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-icon gis-icon">2G</div>
+                    <span>2ГИС</span>
+                </div>
+                <span class="arrow">›</span>
+            </a>
+
+            <div class="footer">
+                Сделано с <span>MLT</span>
+            </div>
+        </div>
+
+        <div id="error-place" class="hidden">
+            <h1>Упс!</h1>
+            <p class="subtitle">Заведение не найдено в базе.</p>
+        </div>
+    </div>
+
+    <script>
+        // Твоя ссылка на CSV из Google Таблиц уже вшита сюда:
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRo-C7jD6Lrx69Y5MZkNaFjcrZCL3prZQpkofjEPWXXxGyZVRC5N_-Rm6-QKhA47lw25WaEHi1Y-THR/pub?output=csv';
+
+        async function loadPlaceData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const placeKey = urlParams.get('place');
+
+            const loaderBlock = document.getElementById('loader');
+            const validBlock = document.getElementById('valid-place');
+            const errorBlock = document.getElementById('error-place');
+
+            if (!placeKey) {
+                loaderBlock.classList.add('hidden');
+                errorBlock.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                const csvText = await response.text();
+                
+                const rows = csvText.split('\n').map(row => {
+                    return row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                });
+
+                let found = null;
+
+                // Структура твоей таблицы:
+                // A: id | B: name | C: yandex | D: 2gis
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row && row[0]) {
+                        let cleanId = row[0].replace(/["']/g, "").trim().toLowerCase();
+                        if (cleanId === placeKey.toLowerCase()) {
+                            found = {
+                                name: row[1]?.replace(/["']/g, "").trim() || "Заведение",
+                                yandex: row[2]?.replace(/["']/g, "").trim() || "#",
+                                gis: row[3]?.replace(/["']/g, "").trim() || "#"
+                            };
+                            break;
+                        }
+                    }
+                }
+
+                loaderBlock.classList.add('hidden');
+
+                if (found) {
+                    document.getElementById('place-name').textContent = found.name;
+                    document.getElementById('link-yandex').href = found.yandex;
+                    document.getElementById('link-gis').href = found.gis;
+                    validBlock.classList.remove('hidden');
+                } else {
+                    errorBlock.classList.remove('hidden');
+                }
+            } catch (err) {
+                loaderBlock.classList.add('hidden');
+                errorBlock.classList.remove('hidden');
+            }
+        }
+
+        loadPlaceData();
+    </script>
+</body>
+</html>
