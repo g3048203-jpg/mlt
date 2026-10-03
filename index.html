@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Оставить отзыв</title>
-    <!-- Подключаем сказочный каллиграфический шрифт для MLT в точности как на референсе с замком -->
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <!-- Премиальный, четкий и читаемый шрифт Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -48,20 +48,18 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Твой фирменный шрифт MLT как на фото с замком */
+        /* Стильный и читаемый логотип MLT */
         .brand-mlt {
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 56px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            background: linear-gradient(180deg, #374151 0%, #111827 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            font-family: 'Cinzel', serif;
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            color: #111827;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Увеличенный, жирный и черный текст «Спасибо, что вы с нами» как на референсе */
+        /* Крупный и жирный текст */
         .main-title {
             font-size: 20px;
             font-weight: 700;
@@ -164,10 +162,10 @@
         }
 
         .footer span {
-            font-family: 'UnifrakturMaguntia', cursive;
+            font-family: 'Cinzel', serif;
             color: var(--accent-black);
-            font-weight: 400;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 14px;
         }
 
         .hidden {
@@ -187,13 +185,11 @@
         <div id="loader" class="loader">Загрузка...</div>
 
         <div id="valid-place" class="hidden">
-            <!-- Логотип MLT в готическом стиле -->
+            <!-- Логотип MLT -->
             <div class="brand-mlt">MLT</div>
 
-            <!-- Увеличенный текст -->
             <div class="main-title">Спасибо,<br>что вы с нами</div>
 
-            <!-- Контурное сердечко -->
             <svg class="heart-icon" viewBox="0 0 24 24">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
@@ -236,6 +232,7 @@
     </div>
 
     <script>
+        // Ссылка на твою Google Таблицу (CSV)
         const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRo-C7jD6Lrx69Y5MZkNaFjcrZCL3prZQpkofjEPWXXxGyZVRC5N_-Rm6-QKhA47lw25WaEHi1Y-THR/pub?output=csv';
 
         async function loadPlaceData() {
